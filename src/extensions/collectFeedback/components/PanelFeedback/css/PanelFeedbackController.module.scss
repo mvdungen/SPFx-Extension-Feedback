@@ -1,0 +1,15 @@
+.FeedbackPanel {
+	.FormContainer {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+}
+
+// panel footer area
+
+.ButtonContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-extension-manifest.schema.json",
+
+  "id": "9762d131-29e6-4278-aef1-c5d104b1a766",
+  "alias": "CollectFeedback",
+  "componentType": "Extension",
+  "extensionType": "ApplicationCustomizer",
+
+  "version": "*",
+  "manifestVersion": 2,
+
+  "requiresCustomScript": false
+}

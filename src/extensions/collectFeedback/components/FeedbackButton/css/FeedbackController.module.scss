@@ -1,0 +1,40 @@
+.FeedbackController {
+	.FeedbackButton {
+		// positioning
+		position: absolute;
+		bottom: 0px;
+		right: 100px;
+		z-index: 1000;
+		// dimensions
+		width: 200px;
+		// ui
+		background-color: #1e3c82;
+		color: white;
+		border-radius: 5px 5px 0px 0px;
+		text-align: center;
+		cursor: pointer;
+		// transition
+		transition: box-shadow ease-in-out 0.3s;
+
+		// container with icon and text
+
+		.FeedbackTextContainer {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			padding: 10px 0px;
+
+			.FeedbackIcon {
+				padding-right: 10px;
+			}
+			.FeedbackText {
+				font-weight: 600;
+			}
+		}
+	}
+
+	.FeedbackButton:hover {
+		-webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.26);
+		box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.26);
+	}
+}
