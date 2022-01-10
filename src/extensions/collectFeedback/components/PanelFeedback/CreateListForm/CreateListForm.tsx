@@ -5,13 +5,13 @@ import '@pnp/sp/webs';
 import '@pnp/sp/lists';
 import '@pnp/sp/security/list';
 import '@pnp/sp/items';
+import { PermissionKind } from '@pnp/sp/security';
 
 import { FEEDBACKLIST } from '../fnPanelFeedback';
 import { DefaultButton, Icon, PrimaryButton, Text } from 'office-ui-fabric-react';
 import { ChoiceFieldFormatType, UrlFieldFormatType } from '@pnp/sp/fields';
 
 import styles from '../css/PanelFeedbackController.module.scss';
-import { IRoleAssignment, IRoleAssignmentInfo, PermissionKind } from '@pnp/sp/security';
 
 export interface ICreateListFormProps {
 	onDismissPanel: () => void;

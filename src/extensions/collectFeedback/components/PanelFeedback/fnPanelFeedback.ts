@@ -6,7 +6,7 @@ import { IContextInfo } from '@pnp/sp/sites';
 
 import IFeedbackValuesRef from './IFeedbackValuesRef';
 
-export const FEEDBACKLIST: string = 'X10Feedback';
+export const FEEDBACKLIST: string = 'Feedback';
 
 /**
  * @function getValuesInformation

@@ -3,11 +3,11 @@
   "solution": {
     "name": "Collect Feedback",
     "id": "b7a09cba-dc00-4ad0-8870-b5b52ed254e2",
-    "version": "0.1.0.0",
+    "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
     "developer": {
-      "name": "",
+      "name": "Maarten van den Dungen",
       "websiteUrl": "",
       "privacyUrl": "",
       "termsOfUseUrl": "",
