@@ -1,10 +1,14 @@
-# collect-feedback
+# Extension Collect Feedback
 
 ## Summary
 
-Short summary on functionality and used technologies.
+The feedback extensions allows the end user to add feedback for the site where this extension has been installed on. It will add a button to all pages in the site. Clicking the button will open a panel that show the Site URL and Page URL and a textbox for entering feedback for the current page. 
 
-[picture of the solution in action, if possible]
+### Why do you need this extension
+
+When you deliver a new application within SharePoint Online, you want to collect feedback. The most simple way to do that is creating a list and allow all people in the site to enter information. However, you want to know the site and/or page people are visiting and providing feedback on. This web part assembles this information and stores it in the list together with the feedback. Easy, no rocket science, everybody understands it...
+
+![Feedback](./images/FeedbackExtension.gif)
 
 ## Used SharePoint Framework Version
 
@@ -15,24 +19,45 @@ Short summary on functionality and used technologies.
 - [SharePoint Framework](https://aka.ms/spfx)
 - [Microsoft 365 tenant](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
 
-> Get your own free development tenant by subscribing to [Microsoft 365 developer program](http://aka.ms/o365devprogram)
+## Feedback List
 
-## Prerequisites
+The list is a straightforward SharePoint list that is automatically created after the first time the feedback button is clicked. Make sure that when you install the extension, you create once (as an admin) on the button to create the list. Visitors will not be allowed to create lists on the site. They will receive a nice error message when the list does not exist.
 
-> Any special pre-requisites?
+As you can see in the image below the list contains of the following columns. The must exist, you can change whatever you want on the (for instance) `Status` field, sort order or grouping, as long as the following fields exists.
+
+Field | Type | Remarks
+----- | ---- | -------
+Title | Single line of Text | Default title field in the list
+Body | Multiline Textfield
+SiteUrl | Hyperlink
+PageUrl | Hyperlink
+Status | Choice | At least status `New` should be present
+
+![List Example](./images/ListSample.png)
+
+## Creating the list
+
+There are not special needs for the extension. If the Feedback list does not exist, it will be created. 
+
+![Create Feedback List](./images/FeedbackCreateList.gif)
+
+However the permissions for the list will not be changed. You have to do this by hand:
+1. Open the list
+2. Choose Gear Icon > Library Settings > Library Permissions
+3. Break the role inheritance
+4. Add persmission level `Contribute` to the Visitors group
 
 ## Solution
 
 Solution|Author(s)
 --------|---------
-folder name | Author details (name, company, twitter alias with link)
+ExtFeedback | Maarten van den Dungen, Rapid Circle
 
 ## Version history
 
 Version|Date|Comments
 -------|----|--------
-1.1|March 10, 2021|Update comment
-1.0|January 29, 2021|Initial release
+0.1|January 10, 2022|Initial release
 
 ## Disclaimer
 
@@ -47,22 +72,6 @@ Version|Date|Comments
 - in the command-line run:
   - **npm install**
   - **gulp serve**
-
-> Include any additional steps as needed.
-
-## Features
-
-Description of the extension that expands upon high-level summary above.
-
-This extension illustrates the following concepts:
-
-- topic 1
-- topic 2
-- topic 3
-
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
-
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
 
 ## References
 
