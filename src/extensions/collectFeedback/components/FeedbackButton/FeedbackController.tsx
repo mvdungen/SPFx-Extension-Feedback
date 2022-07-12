@@ -11,22 +11,6 @@ export interface IFeedbackControllerState {}
 
 export default function FeedbackController(props: IFeedbackControllerProps) {
 	//
-	// state and initialisation
-
-	//
-	// component mount --------------------------------------------------------
-
-	React.useEffect(() => {
-		// mount component
-		// ...
-		// unmount component
-		// ..
-	}, []);
-
-	//
-	// helper functions -------------------------------------------------------
-
-	//
 	// component render -------------------------------------------------------
 
 	return (

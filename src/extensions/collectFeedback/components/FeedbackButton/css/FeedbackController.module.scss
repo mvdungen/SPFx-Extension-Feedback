@@ -1,10 +1,12 @@
 .FeedbackController {
 	.FeedbackButton {
 		// positioning
-		position: absolute;
-		bottom: 0px;
+		position: fixed;
 		right: 100px;
 		z-index: 1000;
+		// make the default button disappear under the screen
+		bottom: -30px;
+		overflow-y: hidden;
 		// dimensions
 		width: 200px;
 		// ui
@@ -14,7 +16,7 @@
 		text-align: center;
 		cursor: pointer;
 		// transition
-		transition: box-shadow ease-in-out 0.3s;
+		transition: bottom ease-in-out 0.4s;
 
 		// container with icon and text
 
@@ -34,7 +36,6 @@
 	}
 
 	.FeedbackButton:hover {
-		-webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.26);
-		box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.26);
+		bottom: 0px;
 	}
 }
