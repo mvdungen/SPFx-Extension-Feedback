@@ -32,8 +32,6 @@ export default function FeedbackButton(props: IFeedbackButtonProps) {
 	React.useEffect(() => {
 		// mount component
 		setIsLoading(false);
-		// unmount component
-		// ..
 	}, []);
 
 	//
