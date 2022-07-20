@@ -2,7 +2,7 @@
 
 ## Summary
 
-The feedback extensions allows the end user to add feedback for the site where this extension has been installed on. It will add a button to all pages in the site. Clicking the button will open a panel that show the Site URL and Page URL and a textbox for entering feedback for the current page. 
+The feedback extensions allows the end user to add feedback for the site where this extension has been installed. It will add a button to all pages in the site. Clicking the button will open a panel that show the Site URL and Page URL and a textbox for entering feedback for the current page. 
 
 ### Why do you need this extension
 
@@ -21,17 +21,17 @@ When you deliver a new application within SharePoint Online, you want to collect
 
 ## Feedback List
 
-The list is a straightforward SharePoint list that is automatically created after the first time the feedback button is clicked. Make sure that when you install the extension, you create once (as an admin) on the button to create the list. Visitors will not be allowed to create lists on the site. They will receive a nice error message when the list does not exist.
+The list is a straightforward SharePoint list that is automatically created after the first time the feedback button is clicked. Make sure that when you install the extension, you click once (as an admin) on the button to create the list. Visitors will not be allowed to create lists on the site. They will receive a nice error message when the list does not exist.
 
-As you can see in the image below the list contains of the following columns. The must exist, you can change whatever you want on the (for instance) `Status` field, sort order or grouping, as long as the following fields exists.
+As you can see in the image below the list contains the following columns. They must exist, you can change whatever you want on the (for instance) `Status` field, sort order or grouping, as long as the following fields exists.
 
-Field | Type | Remarks
------ | ---- | -------
-Title | Single line of Text | Default title field in the list
-Body | Multiline Textfield
-SiteUrl | Hyperlink
-PageUrl | Hyperlink
-Status | Choice | At least status `New` should be present
+| Field | Type | Remarks |
+| ----- | ---- | ------- |
+| Title | Single line of Text | Default title field in the list |
+| Body | Multiline Textfield | You can change this to plain text or full HTML if you like after the list is created
+| SiteUrl | Hyperlink |
+| PageUrl | Hyperlink |
+| Status | Choice | At least status `New` should be present |
 
 ![List Example](./images/ListSample.png)
 
@@ -41,7 +41,7 @@ There are not special needs for the extension. If the Feedback list does not exi
 
 ![Create Feedback List](./images/FeedbackCreateList.gif)
 
-However the permissions for the list will not be changed. You have to do this by hand:
+However the permissions for the list will not be changed. You have to do this by hand after the list is created. Be sure to login as a site admin
 1. Open the list
 2. Choose Gear Icon > Library Settings > Library Permissions
 3. Break the role inheritance
@@ -49,15 +49,16 @@ However the permissions for the list will not be changed. You have to do this by
 
 ## Solution
 
-Solution|Author(s)
---------|---------
-ExtFeedback | Maarten van den Dungen, Rapid Circle
+| Solution | Author(s) |
+| -------- | ---------
+| ExtFeedback | Maarten van den Dungen, Rapid Circle |
 
 ## Version history
 
-Version|Date|Comments
--------|----|--------
-0.1|January 10, 2022|Initial release
+| Version | Date | Comments |
+| ------- | ---- | -------- |
+| 1.0 | January 10, 2022 | Initial release
+| 2.0 | July 14, 2022 | Updated version; semi hide the button until mouse over
 
 ## Disclaimer
 
@@ -69,6 +70,7 @@ Version|Date|Comments
 
 - Clone this repository
 - Ensure that you are at the solution folder
+- change the `serve.json`, update the `pageUrl` to your environment 
 - in the command-line run:
   - **npm install**
   - **gulp serve**

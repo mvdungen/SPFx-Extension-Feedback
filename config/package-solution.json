@@ -3,7 +3,7 @@
   "solution": {
     "name": "Collect Feedback",
     "id": "b7a09cba-dc00-4ad0-8870-b5b52ed254e2",
-    "version": "2.0.0.0",
+    "version": "2.0.2.0",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
     "developer": {
@@ -18,7 +18,7 @@
         "title": "Collect Feedback",
         "description": "Collect feedback from end users on a specific site.",
         "id": "b451852d-b4d6-479d-b6d7-1eda65290da1",
-        "version": "2.0.0.0",
+        "version": "2.0.2.0",
         "assets": {
           "elementManifests": [
             "elements.xml",
