@@ -2,21 +2,21 @@
 	.FeedbackButton {
 		// positioning
 		position: fixed;
-		right: 100px;
+		right: 100px;							// placement adjust
 		z-index: 1000;
-		// make the default button disappear under the screen
-		bottom: -30px;
+		// button hover effect
+		bottom: var(--buttonOffset);
 		overflow-y: hidden;
 		// dimensions
 		width: 200px;
 		// ui
-		background-color: #1e3c82;
-		color: white;
-		border-radius: 5px 5px 0px 0px;
+		background-color: var(--buttonBgColor);
+		color: var(--buttonTextColor);
+		border-radius: 5px 5px 0px 0px;			// placement adjust
 		text-align: center;
 		cursor: pointer;
 		// transition
-		transition: bottom ease-in-out 0.4s;
+		transition: bottom ease-in-out 0.4s;	// placement adjust
 
 		// container with icon and text
 

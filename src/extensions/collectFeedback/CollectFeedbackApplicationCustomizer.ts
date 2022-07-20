@@ -10,14 +10,9 @@ import * as ReactDOM from 'react-dom';
 import { sp } from '@pnp/sp/presets/all';
 
 import FeedbackController from './components/FeedbackButton/FeedbackController';
+import IExtProperties from './IExtProperties';
 
-export interface ICollectFeedbackApplicationCustomizerProperties {
-	// This is an example; replace with your own property
-	testMessage: string;
-}
-
-/** A Custom Action which can be run during execution of a Client Side Application */
-export default class CollectFeedbackApplicationCustomizer extends BaseApplicationCustomizer<ICollectFeedbackApplicationCustomizerProperties> {
+export default class CollectFeedbackApplicationCustomizer extends BaseApplicationCustomizer<IExtProperties> {
 	// feedback placeholder
 	private _top: PlaceholderContent | undefined;
 
@@ -56,6 +51,7 @@ export default class CollectFeedbackApplicationCustomizer extends BaseApplicatio
 				// create placeholder feedback button
 				const elm = React.createElement(FeedbackController, {
 					context: this.context,
+					extensionProperties: this.properties
 				});
 				// show element
 				ReactDOM.render(elm, this._top.domElement);

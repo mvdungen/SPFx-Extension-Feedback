@@ -4,9 +4,11 @@ import PanelFeedbackController from '../PanelFeedback/PanelFeedbackController';
 import { Icon, Text } from 'office-ui-fabric-react';
 
 import styles from './css/FeedbackController.module.scss';
+import IExtProperties from '../../IExtProperties';
 
 export interface IFeedbackButtonProps {
 	context: any;
+	extensionProperties: IExtProperties;
 }
 export interface IFeedbackButtonState {
 	isFeedbackPanelOpen: boolean;
@@ -25,6 +27,8 @@ export default function FeedbackButton(props: IFeedbackButtonProps) {
 	//	   upper left corner of the document followed by the formatted button in the lower right corner.
 	//	   Using the loading state (and returning null when loading) prevents the glitch...
 	const [isLoading, setIsLoading] = React.useState<boolean>(true);
+
+	const _feedbackText: string = props.extensionProperties.defaultText || 'Give Feedback';
 
 	//
 	// component mount --------------------------------------------------------
@@ -59,10 +63,11 @@ export default function FeedbackButton(props: IFeedbackButtonProps) {
 	return (
 		<>
 			{/* feedback button */}
+
 			<div className={styles.FeedbackButton} onClick={_toggleFeedbackPanel}>
 				<Text variant='mediumPlus' className={styles.FeedbackTextContainer}>
 					<Icon iconName='Feedback' className={styles.FeedbackIcon} />
-					<span className={styles.FeedbackText}>Give Feedback</span>
+					<span className={styles.FeedbackText}>{_feedbackText}</span>
 				</Text>
 			</div>
 

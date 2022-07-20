@@ -58,8 +58,6 @@ export default function PanelFeedbackController(props: IPanelFeedbackControllerP
 	//
 	// component render -------------------------------------------------------
 
-	console.log('loading', isLoading, ' - open', isOpen);
-
 	if (isLoading) {
 		// loading state > return nothing
 		return null;

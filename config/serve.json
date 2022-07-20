@@ -9,7 +9,10 @@
         "9762d131-29e6-4278-aef1-c5d104b1a766": {
           "location": "ClientSideExtension.ApplicationCustomizer",
           "properties": {
-            "testMessage": "Test message"
+            "defaultText": "Feedback Me!",
+            "useHoverEffect": true,
+            "backgroundColor": "yellow",
+            "textColor": "black"
           }
         }
       }
@@ -20,7 +23,10 @@
         "9762d131-29e6-4278-aef1-c5d104b1a766": {
           "location": "ClientSideExtension.ApplicationCustomizer",
           "properties": {
-            "testMessage": "Test message"
+            "defaultText": "Feedback Me!",
+            "useHoverEffect": true,
+            "backgroundColor": "yellow",
+            "textColor": "black"
           }
         }
       }

@@ -1,0 +1,9 @@
+:root {
+    /* button fore and background colors */
+    --buttonBgColor: yellow;
+    --buttonTextColor: black;
+    /* offset for using hover effect */
+    --buttonOffset: -30px;
+}
+
+/* placement of button, depending on extension properties */
