@@ -1,5 +1,27 @@
 define([], function() {
   return {
-    "Title": "CollectFeedbackApplicationCustomizer"
+    COMMON_LABEL_CHOOSE_CATEGORY: "Choose a Category",
+    COMMON_LABEL_CLOSE: "Close",
+    COMMON_LABEL_CREATE_LIST: "Create List",
+    COMMON_LABEL_FEEDBACK: "Your feedback",
+    COMMON_LABEL_FEEDBACK_REQUIRED: "Feedback is a required field. Please enter your feedback in this field.",
+    COMMON_LABEL_OK: "Ok",
+    COMMON_LABEL_PAGE: "Page",
+    COMMON_LABEL_SITE: "Site",
+    CREATE_LIST_ERROR_NOPERMISSIONS: "Oeps, the feedback list does not exist and it seems that you do not have enough permissions to create the list. Please contact support for more information. You are currently not able to provide us with feedback. Sorry for the inconvenience.",
+    CREATE_LIST_LIST_CREATED_MESSAGE: "The list has been created for you. You can now use the feedback module on this site.",
+    CREATE_LIST_SUBTITLE: "Hmm, it seems that the 'Feedback' list to store the feedback does not exists. Click 'Create List' to create the list on this site.",
+    FEEDBACK_LIST_DESCRIPTION: "This list collects feedback from the end users. Use the 'Give Feedback' button on the page, to enter create an entry in this list.",
+    FEEDBACKBUTTON_LABEL: "Give Feedback",
+    PANEL_BUTTON_CANCEL: "Cancel",
+    PANEL_BUTTON_SAVE: "Save Feedback",
+    PANEL_ERROR_SAVE: "Oops, something went wrong while saving your feedback. Please contact support for more information. We cannot save the feedback now.",
+    PANEL_SUBTITLE: "Thank you for providing us with feedback. Your feedback is highly appreciated. Please enter your feedback below and click 'Save Feedback'.",
+    PANEL_TITLE: "Collect Feedback",
+    TASK_ADD_FIELDS: "Adding fields to list...",
+    TASK_ALL_DONE: "All done",
+    TASK_CREATE_LIST: "Create list 'Feedback'...",
+    TASK_CREATE_LIST_VIEW: "Changing default list views...",
+    TASK_UPDATE_SECURITY: "Setting list security...",
   }
 });

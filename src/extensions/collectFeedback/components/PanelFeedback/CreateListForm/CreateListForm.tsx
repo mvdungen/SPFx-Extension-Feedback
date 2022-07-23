@@ -11,6 +11,7 @@ import { FEEDBACKLIST } from '../fnPanelFeedback';
 import { DefaultButton, Icon, PrimaryButton, Text } from 'office-ui-fabric-react';
 import { ChoiceFieldFormatType, UrlFieldFormatType } from '@pnp/sp/fields';
 
+import * as strings from 'CollectFeedbackApplicationCustomizerStrings';
 import styles from '../css/PanelFeedbackController.module.scss';
 
 export interface ICreateListFormProps {
@@ -33,11 +34,11 @@ export default function CreateListForm(props: ICreateListFormProps) {
 	const [userHasPermissions, setUserHasPermissions] = React.useState<boolean>(false);
 
 	const createListTasks: string[] = [
-		"Create list 'Feedback'...",
-		'Adding fields to list...',
-		'Changing default list views...',
-		'Setting list security...',
-		'All done',
+		strings.TASK_CREATE_LIST,
+		strings.TASK_ADD_FIELDS,
+		strings.TASK_CREATE_LIST_VIEW,
+		strings.TASK_UPDATE_SECURITY,
+		strings.TASK_ALL_DONE,
 	];
 
 	//
@@ -76,7 +77,7 @@ export default function CreateListForm(props: ICreateListFormProps) {
 
 		const listAddResult = await sp.web.lists.add(
 			FEEDBACKLIST,
-			"This list collects feedback from the end users. Use the 'Give Feedback' button on the page, to enter create an entry in this list.",
+			strings.FEEDBACK_LIST_DESCRIPTION,
 			100,
 			false,
 			{ OnQuickLaunch: false }
@@ -96,6 +97,7 @@ export default function CreateListForm(props: ICreateListFormProps) {
 			await _list.fields.addMultilineText('Body', 15);
 			await _list.fields.addUrl('SiteUrl', UrlFieldFormatType.Hyperlink);
 			await _list.fields.addUrl('PageUrl', UrlFieldFormatType.Hyperlink);
+			await _list.fields.addChoice('Category', ['Other'], ChoiceFieldFormatType.Dropdown);
 			await _list.fields.addChoice(
 				'Status',
 				['New', 'In Progress', 'Closed'],
@@ -109,6 +111,7 @@ export default function CreateListForm(props: ICreateListFormProps) {
 			await _list.defaultView.fields.add('Body');
 			await _list.defaultView.fields.add('SiteUrl');
 			await _list.defaultView.fields.add('PageUrl');
+			await _list.defaultView.fields.add('Category');
 			await _list.defaultView.fields.add('Status');
 			await _list.defaultView.fields.add('Created');
 			await _list.defaultView.fields.add('Author');
@@ -131,10 +134,7 @@ export default function CreateListForm(props: ICreateListFormProps) {
 						// done
 						return (
 							<div style={{ margin: '5px 0px' }}>
-								<Icon
-									iconName='CheckMark'
-									style={{ marginRight: '5px' }}
-								/>
+								<Icon iconName='CheckMark' style={{ marginRight: '5px' }} />
 								{_task}
 							</div>
 						);
@@ -142,10 +142,7 @@ export default function CreateListForm(props: ICreateListFormProps) {
 						// doing
 						return (
 							<div style={{ margin: '5px 0px' }}>
-								<Icon
-									iconName='CheckBox'
-									style={{ marginRight: '5px' }}
-								/>
+								<Icon iconName='CheckBox' style={{ marginRight: '5px' }} />
 								{_task}
 							</div>
 						);
@@ -168,13 +165,10 @@ export default function CreateListForm(props: ICreateListFormProps) {
 		return (
 			<div className={styles.FormContainer}>
 				<Text variant='medium'>
-					Oeps, the feedback list does not exist and it seems that you do not
-					have enough permissions to create the list. Please contact support for
-					more information. You are currently not able to provide us with
-					feedback. Sorry for the inconvenience.
+					{strings.CREATE_LIST_ERROR_NOPERMISSIONS}
 				</Text>
 				<DefaultButton
-					text='Close'
+					text={strings.COMMON_LABEL_CLOSE}
 					styles={{ root: { width: '150px' } }}
 					onClick={props.onDismissPanel}
 				/>
@@ -185,12 +179,11 @@ export default function CreateListForm(props: ICreateListFormProps) {
 	return (
 		<div className={styles.FormContainer}>
 			<Text variant='medium'>
-				Hmm, it seems that the 'Feedback' list to store the feedback does not
-				exists. Click 'Create List' to create the list on this site.
+				{strings.CREATE_LIST_SUBTITLE}
 			</Text>
 			{updateProgress.counter === 0 && (
 				<DefaultButton
-					text='Create List'
+					text={strings.COMMON_LABEL_CREATE_LIST}
 					styles={{ root: { width: '150px' } }}
 					disabled={updateProgress.counter > 0}
 					onClick={_createList}
@@ -200,11 +193,10 @@ export default function CreateListForm(props: ICreateListFormProps) {
 			{updateProgress.counter === 99 && (
 				<>
 					<Text variant='medium'>
-						The list has been created for you. You can now use the feedback
-						module on this site.
+						{strings.CREATE_LIST_LIST_CREATED_MESSAGE}
 					</Text>
 					<PrimaryButton
-						text='Ok'
+						text={strings.COMMON_LABEL_OK}
 						styles={{ root: { width: '150px' } }}
 						disabled={updateProgress.counter !== 99}
 						onClick={props.onDismissPanel}

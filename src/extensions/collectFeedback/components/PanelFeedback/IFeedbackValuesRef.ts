@@ -4,5 +4,6 @@ export default interface IFeedbackValuesRef {
 	pageTitle: string;
 	pageUrl: string;
 	Status: string;
+	Category: string;
 	feedbackBody: string;
 }
