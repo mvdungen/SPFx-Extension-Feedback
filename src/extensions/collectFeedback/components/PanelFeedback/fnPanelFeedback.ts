@@ -3,6 +3,7 @@ import '@pnp/sp/webs';
 import '@pnp/sp/lists';
 import '@pnp/sp/items';
 import { IContextInfo } from '@pnp/sp/sites';
+import { IFieldInfo, IField } from '@pnp/sp/fields';
 
 import IFeedbackValuesRef from './IFeedbackValuesRef';
 
@@ -25,6 +26,24 @@ export async function getValuesInformation(): Promise<Partial<IFeedbackValuesRef
 		pageTitle: document.title,
 	};
 	return _feedbackInfo;
+}
+
+/**
+ * @function getCategoryChoices
+ * @description Retrieves category field from feedback list and returns an array of all choices
+ * @returns Array containing all choices from Category field
+ */
+export async function getCategoryChoices(): Promise<string[]> {
+	// initialize
+	let _resultChoices: string[] = [];
+	// retrieve the field from the feedback list
+	let _fld: IField = await sp.web.lists
+		.getByTitle(FEEDBACKLIST)
+		.fields.getByInternalNameOrTitle('Category')();
+	// set choices
+	_resultChoices = await _fld['Choices'] as string[];
+	// return results
+	return _resultChoices;
 }
 
 /**
@@ -65,6 +84,7 @@ export async function saveFeedback(values: IFeedbackValuesRef): Promise<boolean>
 				Url: values.pageUrl,
 				Description: values.pageTitle,
 			},
+			Category: values.Category,
 			Status: 'New',
 		})
 		.then(() => true)

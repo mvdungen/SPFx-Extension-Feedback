@@ -1,12 +1,13 @@
 import * as React from 'react';
 
 import { ensureFeedbackListExists, getValuesInformation } from './fnPanelFeedback';
+import CreateListForm from './CreateListForm/CreateListForm';
 import FeedbackForm from './FeedbackForm/FeedbackForm';
 
 import { Panel, PanelType } from 'office-ui-fabric-react';
 
+import * as strings from 'CollectFeedbackApplicationCustomizerStrings';
 import styles from './css/PanelFeedbackController.module.scss';
-import CreateListForm from './CreateListForm/CreateListForm';
 
 export interface IPanelFeedbackControllerProps {
 	context: any;
@@ -66,7 +67,7 @@ export default function PanelFeedbackController(props: IPanelFeedbackControllerP
 	return (
 		<Panel
 			isOpen={isOpen}
-			headerText={'Collect Feedback'}
+			headerText={strings.PANEL_TITLE}
 			type={PanelType.medium}
 			onDismiss={_onDismissPanel}
 			closeButtonAriaLabel='Close'>

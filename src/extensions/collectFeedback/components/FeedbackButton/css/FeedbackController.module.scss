@@ -2,7 +2,6 @@
 	.FeedbackButton {
 		// positioning
 		position: fixed;
-		right: 100px;							// placement adjust
 		z-index: 1000;
 		// button hover effect
 		bottom: var(--buttonOffset);
@@ -12,11 +11,13 @@
 		// ui
 		background-color: var(--buttonBgColor);
 		color: var(--buttonTextColor);
-		border-radius: 5px 5px 0px 0px;			// placement adjust
 		text-align: center;
 		cursor: pointer;
-		// transition
-		transition: bottom ease-in-out 0.4s;	// placement adjust
+		
+		// the following styles will be programmatically set based on the placement setting
+		// right: 100px;						
+		// border-radius: 5px 5px 0px 0px;		
+		// transition: bottom ease-in-out 0.4s;	
 
 		// container with icon and text
 

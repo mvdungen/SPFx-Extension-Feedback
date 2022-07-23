@@ -1,45 +1,52 @@
 import * as React from 'react';
 
-import IExtProperties from '../../IExtProperties';
+import IExtensionOptions from './IExtensionOptions';
 import FeedbackButton from './FeedbackButton';
+import { fetchExtensionOptions, setGlobalCSSFromOptions } from './fnExtensionOptions';
 
 import styles from './css/FeedbackController.module.scss';
 import '../../css/globalvars.css';
 
 export interface IFeedbackControllerProps {
 	context: any;
-	extensionProperties: IExtProperties;
 }
 export interface IFeedbackControllerState {}
 
 export default function FeedbackController(props: IFeedbackControllerProps) {
 	//
-	// set global css vars depening on extension properties
-	const _root: any = document.querySelector(':root');
 
-	if (_root) {
-		// fore and background color
-		_root.style.setProperty(
-			'--buttonBgColor',
-			props.extensionProperties.backgroundColor || '#1e3c82'
-		);
-		_root.style.setProperty(
-			'--buttonTextColor',
-			props.extensionProperties.textColor || '#ffffff'
-		);
+	const [isLoading, setIsLoading] = React.useState<boolean>(true);
+	const refOptions = React.useRef<IExtensionOptions | null>(null);
 
-		// hover effect
-		_root.style.setProperty(
-			'--buttonOffset',
-			props.extensionProperties.useHoverEffect ? '-30px' : '0px'
-		);
-	}
+	// mount controller
+
+	React.useEffect(() => {
+		//
+		async function _getExtentionOptions(): Promise<void> {
+			// fetch local settings from site assets
+			await fetchExtensionOptions().then((_options: IExtensionOptions) => {
+				// set options
+				setGlobalCSSFromOptions(_options);
+				// save reference to pass to child components
+				refOptions.current = _options;
+				// load button
+				setIsLoading(false);
+			});
+		}
+		// retrieve settings
+		_getExtentionOptions();
+	}, []);
 
 	// component render -------------------------------------------------------
 
+	if (isLoading) {
+		// fetching options > do nothing
+		return null;
+	}
+
 	return (
 		<div className={styles.FeedbackController}>
-			<FeedbackButton {...props} />
+			<FeedbackButton context={props.context} options={refOptions.current} />
 		</div>
 	);
 }

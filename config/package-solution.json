@@ -1,34 +1,31 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
-  "solution": {
-    "name": "Collect Feedback",
-    "id": "b7a09cba-dc00-4ad0-8870-b5b52ed254e2",
-    "version": "3.0.2.0",
-    "includeClientSideAssets": true,
-    "isDomainIsolated": false,
-    "developer": {
-      "name": "Maarten van den Dungen",
-      "websiteUrl": "",
-      "privacyUrl": "",
-      "termsOfUseUrl": "",
-      "mpnId": "Undefined-1.13.1"
-    },
-    "features": [
-      {
-        "title": "Collect Feedback",
-        "description": "Collect feedback from end users on a specific site.",
-        "id": "b451852d-b4d6-479d-b6d7-1eda65290da1",
-        "version": "3.0.2.0",
-        "assets": {
-          "elementManifests": [
-            "elements.xml",
-            "ClientSideInstance.xml"
-          ]
-        }
-      }
-    ]
-  },
-  "paths": {
-    "zippedPackage": "solution/collect-feedback.sppkg"
-  }
+	"$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+	"solution": {
+		"name": "Collect Feedback",
+		"id": "b7a09cba-dc00-4ad0-8870-b5b52ed254e2",
+		"version": "3.0.3.2",
+		"includeClientSideAssets": true,
+		"isDomainIsolated": false,
+		"developer": {
+			"name": "Maarten van den Dungen",
+			"websiteUrl": "",
+			"privacyUrl": "",
+			"termsOfUseUrl": "",
+			"mpnId": "Undefined-1.13.1"
+		},
+		"features": [
+			{
+				"title": "Collect Feedback",
+				"description": "Collect Feedback from your end users.",
+				"id": "b451852d-b4d6-479d-b6d7-1eda65290da1",
+				"version": "3.0.3.2",
+				"assets": {
+					"elementManifests": ["elements.xml"]
+				}
+			}
+		]
+	},
+	"paths": {
+		"zippedPackage": "solution/collect-feedback.sppkg"
+	}
 }

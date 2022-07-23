@@ -1,0 +1,27 @@
+define([], function() {
+  return {
+    COMMON_LABEL_CHOOSE_CATEGORY: "Kies een categorie",
+    COMMON_LABEL_CLOSE: "Sluiten",
+    COMMON_LABEL_CREATE_LIST: "Lijst aanmaken",
+    COMMON_LABEL_FEEDBACK: "Jouw feedback",
+    COMMON_LABEL_FEEDBACK_REQUIRED: "Dit is een verplicht veld!",
+    COMMON_LABEL_OK: "Ok",
+    COMMON_LABEL_PAGE: "Pagina",
+    COMMON_LABEL_SITE: "Site",
+    CREATE_LIST_ERROR_NOPERMISSIONS: "Oeps, de feedbacklijst bestaat nog niet en het lijkt er op dat je niet genoeg permissies hebt om een lijst te mogen aanmaken. Neem contact op met de site eigenaar. Op dit moment kun je geen feedback geven. Sorry voor het ongemak.",
+    CREATE_LIST_LIST_CREATED_MESSAGE: "De lijst is aangemaakt. De site gebruikers kunnen nu feedback geven op de site.",
+    CREATE_LIST_SUBTITLE: "Hmm, het lijkt erop alsof de feedback lijst nog niet bestaat. Klik op 'Lijst aanmaken' om de lijst aan te maken op de site.",
+    FEEDBACK_LIST_DESCRIPTION: "This list collects feedback from the end users. Use the 'Give Feedback' button on the page, to enter create an entry in this list.",
+    FEEDBACKBUTTON_LABEL: "Geef Feedback",
+    PANEL_BUTTON_CANCEL: "Annuleren",
+    PANEL_BUTTON_SAVE: "Feedback bewaren",
+    PANEL_ERROR_SAVE: "Oeps, er is iets mis gegaan bij het opslaan van de feedback. Neem contact op met de site eigenaar.",
+    PANEL_SUBTITLE: "Dank je dat je ons van feedback wilt voorzien, feedback is van belang zodat wij de site nog beter kunnen maken. Typ jouw feedback in het tekstvak hieronder en klik op 'Feedback bewaren'.",
+    PANEL_TITLE: "Feedback verzamelen",
+    TASK_ADD_FIELDS: "Toevoegen velden aan de lijst...",
+    TASK_ALL_DONE: "Alle taken uitgevoerd!",
+    TASK_CREATE_LIST: "Aanmaken lijst 'Feedback'...",
+    TASK_CREATE_LIST_VIEW: "Standaard weergave in de lijst aanpassen...",
+    TASK_UPDATE_SECURITY: "Beveiliging in de lijst bijwerken...",
+  }
+});

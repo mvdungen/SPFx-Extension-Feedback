@@ -6,9 +6,22 @@ import '@pnp/sp/lists';
 import '@pnp/sp/items';
 
 import IFeedbackValuesRef from '../../PanelFeedback/IFeedbackValuesRef';
-import { FEEDBACKLIST, getValuesInformation, saveFeedback } from '../fnPanelFeedback';
-import { DefaultButton, PrimaryButton, Text, TextField } from 'office-ui-fabric-react';
+import {
+	FEEDBACKLIST,
+	getValuesInformation,
+	getCategoryChoices,
+	saveFeedback,
+} from '../fnPanelFeedback';
+import {
+	DefaultButton,
+	Dropdown,
+	IDropdownOption,
+	PrimaryButton,
+	Text,
+	TextField,
+} from 'office-ui-fabric-react';
 
+import * as strings from 'CollectFeedbackApplicationCustomizerStrings';
 import styles from '../css/PanelFeedbackController.module.scss';
 
 export interface IFeedbackFormProps {
@@ -30,32 +43,44 @@ export default function FeedbackForm(props: IFeedbackFormProps) {
 		pageTitle: '',
 		pageUrl: '',
 		Status: 'New',
+		Category: 'Other',
 		feedbackBody: '',
 	};
 
 	const feedbackValueRef = React.useRef<IFeedbackValuesRef>(initialValues);
 	const feedbackFieldRef = React.useRef(null);
+	const feedbackCategoryListRef = React.useRef<string[]>([]);
 
 	//
 	// component mount --------------------------------------------------------
 
 	React.useEffect(() => {
 		// get initial values for dialog
-		getValuesInformation().then((stateInfo: Partial<IFeedbackValuesRef>) => {
-			// update panel feedback ref information
+
+		async function retrieveFormInformation(): Promise<void> {
+			// base information about site and page
+			let _pageAndSiteInfo: Partial<IFeedbackValuesRef> = await getValuesInformation();
+			let _categoryList: string[] = await getCategoryChoices();
+
+			// update category references
+			feedbackCategoryListRef.current = _categoryList;
+			// update references used in form
 			feedbackValueRef.current = {
 				siteTitle: props.context.pageContext.web.title,
 				siteUrl: props.context.pageContext.web.absoluteUrl,
-				pageTitle: stateInfo.pageTitle,
-				pageUrl: stateInfo.pageUrl,
+				pageTitle: _pageAndSiteInfo.pageTitle,
+				pageUrl: _pageAndSiteInfo.pageUrl,
 				Status: 'New',
+				Category: _categoryList.length > 0 ? _categoryList[0] : 'Other',
 				feedbackBody: '',
 			};
-			// show the panel
+			// set flag
 			setIsLoading(false);
 			// focus on form field
 			feedbackFieldRef.current.focus();
-		});
+		}
+
+		retrieveFormInformation();
 	}, []);
 
 	//
@@ -84,6 +109,14 @@ export default function FeedbackForm(props: IFeedbackFormProps) {
 		}
 	}
 
+	function _getCategoryOptionList(): IDropdownOption[] {
+		let _options: IDropdownOption[] = [];
+		feedbackCategoryListRef.current.forEach((_category: string) =>
+			_options.push({ key: _category, text: _category })
+		);
+		return _options;
+	}
+
 	//
 	// component render -------------------------------------------------------
 
@@ -95,23 +128,20 @@ export default function FeedbackForm(props: IFeedbackFormProps) {
 	return (
 		<div className={styles.FormContainer}>
 			{/* introduction */}
-			<Text variant='medium'>
-				Thank you for providing us with feedback. Your feedback is highly
-				appreciated. Please enter your feedback below and click 'Save Feedback'.
-			</Text>
+			<Text variant='medium'>{strings.PANEL_SUBTITLE}</Text>
 
 			{/* feedback form */}
 
 			<div>
 				<TextField
-					label='Site'
+					label={strings.COMMON_LABEL_SITE}
 					defaultValue={feedbackValueRef.current.siteTitle}
 					disabled
 				/>
 			</div>
 			<div>
 				<TextField
-					label='Page'
+					label={strings.COMMON_LABEL_PAGE}
 					defaultValue={feedbackValueRef.current.pageTitle}
 					disabled
 				/>
@@ -119,19 +149,28 @@ export default function FeedbackForm(props: IFeedbackFormProps) {
 			<div>
 				<TextField
 					componentRef={feedbackFieldRef}
-					label='Your feedback'
-					required={true}
-					multiline={true}
-					rows={15}
+					label={strings.COMMON_LABEL_FEEDBACK}
+					required
+					multiline
+					rows={10}
 					spellCheck={false}
 					resizable={false}
 					onChange={event => _updateField('feedbackBody', event)}
 					onGetErrorMessage={(value: string): string => {
-						return value.length === 0
-							? 'Feedback is a required field. Please enter your feedback in this field.'
-							: '';
+						return value.length === 0 ? strings.COMMON_LABEL_FEEDBACK_REQUIRED : '';
 					}}
 					validateOnLoad={true}
+				/>
+			</div>
+			<div>
+				<Dropdown
+					label={strings.COMMON_LABEL_CHOOSE_CATEGORY}
+					options={_getCategoryOptionList()}
+					required
+					defaultSelectedKey={feedbackCategoryListRef.current[0]}
+					onChange={(event, option: IDropdownOption, index: number) =>
+						_updateField('Category', { target: { value: option.text } })
+					}
 				/>
 			</div>
 
@@ -139,23 +178,21 @@ export default function FeedbackForm(props: IFeedbackFormProps) {
 
 			{hasErrors && (
 				<div>
-					<Text variant='medium' style={{color: 'red'}}>
-						Oops, something went wrong while saving your feedback. Please
-						contact support for more information. We cannot save the feedback
-						now.
+					<Text variant='medium' style={{ color: 'red' }}>
+						{strings.PANEL_ERROR_SAVE}
 					</Text>
 				</div>
 			)}
 
 			{/* panel footer */}
-
+			
 			<div className={styles.ButtonContainer}>
 				<PrimaryButton
-					text='Save Feedback'
+					text={strings.PANEL_BUTTON_SAVE}
 					disabled={hasErrors}
 					onClick={_saveFeedback}
 				/>
-				<DefaultButton text={'Cancel'} onClick={props.onDismissPanel} />
+				<DefaultButton text={strings.PANEL_BUTTON_CANCEL} onClick={props.onDismissPanel} />
 			</div>
 		</div>
 	);
