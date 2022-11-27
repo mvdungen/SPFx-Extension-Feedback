@@ -88,6 +88,7 @@ export default function FeedbackButton(props: IFeedbackButtonProps) {
 			<PanelFeedbackController
 				context={props.context}
 				isOpen={stateFeedback.isFeedbackPanelOpen}
+				options={props.options}
 				onDismissPanel={_onDismissPanel}
 			/>
 		</>

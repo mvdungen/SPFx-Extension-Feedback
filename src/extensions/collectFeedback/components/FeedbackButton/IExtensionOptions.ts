@@ -10,6 +10,7 @@ export type TYPEPlacement =
 
 /**
  * @interface IExtensionOptions
+ * @property listId Id of Feedback list, added in V4 for local/global feedback list usage
  * @property defaultText Text to display on the button
  * @property placement Top | Right | Bottom | Left + Top | Bottom OR Left | Right
  * @property useHoverEffect true | false to use hover effect on button
@@ -17,6 +18,7 @@ export type TYPEPlacement =
  * @property textColor text and icon color (adjust together with propery backgroundColor)
  */
 export default interface IExtensionOptions {
+	listId: string;
 	defaultText: string;
 	disableHover: boolean;
 	backgroundColor: string;

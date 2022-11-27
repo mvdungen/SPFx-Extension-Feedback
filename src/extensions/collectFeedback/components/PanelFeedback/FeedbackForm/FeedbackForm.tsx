@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+// TODO - Remove component, changed in V4
+
 import { sp } from '@pnp/sp';
 import '@pnp/sp/webs';
 import '@pnp/sp/lists';

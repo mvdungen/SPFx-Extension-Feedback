@@ -13,6 +13,7 @@ import { ChoiceFieldFormatType, UrlFieldFormatType } from '@pnp/sp/fields';
 
 import * as strings from 'CollectFeedbackApplicationCustomizerStrings';
 import styles from '../css/PanelFeedbackController.module.scss';
+import { createFeedbackJsonFile } from '../../FeedbackButton/fnExtensionOptions';
 
 export interface ICreateListFormProps {
 	onDismissPanel: () => void;
@@ -38,6 +39,7 @@ export default function CreateListForm(props: ICreateListFormProps) {
 		strings.TASK_ADD_FIELDS,
 		strings.TASK_CREATE_LIST_VIEW,
 		strings.TASK_UPDATE_SECURITY,
+		'Create initial settings file...',
 		strings.TASK_ALL_DONE,
 	];
 
@@ -83,6 +85,8 @@ export default function CreateListForm(props: ICreateListFormProps) {
 			{ OnQuickLaunch: false }
 		);
 
+		console.log(listAddResult);
+
 		setUpdateProgress({
 			counter: 2,
 		});
@@ -97,7 +101,6 @@ export default function CreateListForm(props: ICreateListFormProps) {
 			await _list.fields.addMultilineText('Body', 15);
 			await _list.fields.addUrl('SiteUrl', UrlFieldFormatType.Hyperlink);
 			await _list.fields.addUrl('PageUrl', UrlFieldFormatType.Hyperlink);
-			await _list.fields.addChoice('Category', ['Other'], ChoiceFieldFormatType.Dropdown);
 			await _list.fields.addChoice(
 				'Status',
 				['New', 'In Progress', 'Closed'],
@@ -111,13 +114,20 @@ export default function CreateListForm(props: ICreateListFormProps) {
 			await _list.defaultView.fields.add('Body');
 			await _list.defaultView.fields.add('SiteUrl');
 			await _list.defaultView.fields.add('PageUrl');
-			await _list.defaultView.fields.add('Category');
 			await _list.defaultView.fields.add('Status');
 			await _list.defaultView.fields.add('Created');
 			await _list.defaultView.fields.add('Author');
 
 			// add order by created date desc > newest on top
 			_list.defaultView.fields.orderBy('Created', true);
+
+			setUpdateProgress({
+				counter: 4,
+			});
+
+			// create feedback.json file with site url and list id, used in V4.0 - Feedback Form (PnP Dynamic Form)
+
+			await createFeedbackJsonFile(JSON.stringify({ listId: `${listAddResult.data.Id}` }));
 
 			setUpdateProgress({
 				counter: 99,
@@ -164,9 +174,7 @@ export default function CreateListForm(props: ICreateListFormProps) {
 		// current user has no permissions to create the list
 		return (
 			<div className={styles.FormContainer}>
-				<Text variant='medium'>
-					{strings.CREATE_LIST_ERROR_NOPERMISSIONS}
-				</Text>
+				<Text variant='medium'>{strings.CREATE_LIST_ERROR_NOPERMISSIONS}</Text>
 				<DefaultButton
 					text={strings.COMMON_LABEL_CLOSE}
 					styles={{ root: { width: '150px' } }}
@@ -178,9 +186,7 @@ export default function CreateListForm(props: ICreateListFormProps) {
 
 	return (
 		<div className={styles.FormContainer}>
-			<Text variant='medium'>
-				{strings.CREATE_LIST_SUBTITLE}
-			</Text>
+			<Text variant='medium'>{strings.CREATE_LIST_SUBTITLE}</Text>
 			{updateProgress.counter === 0 && (
 				<DefaultButton
 					text={strings.COMMON_LABEL_CREATE_LIST}
@@ -192,9 +198,7 @@ export default function CreateListForm(props: ICreateListFormProps) {
 			{updateProgress.counter > 0 && _setTaskList()}
 			{updateProgress.counter === 99 && (
 				<>
-					<Text variant='medium'>
-						{strings.CREATE_LIST_LIST_CREATED_MESSAGE}
-					</Text>
+					<Text variant='medium'>{strings.CREATE_LIST_LIST_CREATED_MESSAGE}</Text>
 					<PrimaryButton
 						text={strings.COMMON_LABEL_OK}
 						styles={{ root: { width: '150px' } }}

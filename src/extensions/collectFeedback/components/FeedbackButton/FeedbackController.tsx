@@ -14,7 +14,6 @@ export interface IFeedbackControllerState {}
 
 export default function FeedbackController(props: IFeedbackControllerProps) {
 	//
-
 	const [isLoading, setIsLoading] = React.useState<boolean>(true);
 	const refOptions = React.useRef<IExtensionOptions | null>(null);
 

@@ -4,9 +4,14 @@
 		flex-direction: column;
 		gap: 10px;
 	}
+
 }
 
-// panel footer area
+.PanelFooterContainer {
+	margin-left: 15px;
+}
+
+// TODO - panel footer area > not used anymore > remove
 
 .ButtonContainer {
 	display: flex;

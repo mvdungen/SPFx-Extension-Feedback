@@ -23,7 +23,7 @@ When you deliver a new application within SharePoint Online, you want to collect
 
 The list is a straightforward SharePoint list that is automatically created after the first time the feedback button is clicked. Make sure that when you install the extension, you click once (as an admin) on the button to create the list. Visitors will not be allowed to create lists on the site. They will receive a nice error message when the list does not exist.
 
-As you can see in the image below the list contains the following columns. They must exist, you can change whatever you want on the (for instance) `Status` field, sort order or grouping, as long as the following fields exists.
+As you can see in the image below the list contains the following columns. They must exist, you can change whatever you want on the (for instance) `Status` field, sort order or grouping, **as long as the following fields exists**:
 
 | Field | Type | Remarks |
 | ----- | ---- | ------- |
@@ -31,16 +31,9 @@ As you can see in the image below the list contains the following columns. They 
 | Body | Multiline Textfield | You can change this to plain text or full HTML if you like after the list is created
 | SiteUrl | Hyperlink |
 | PageUrl | Hyperlink |
-| Category | Choice | Enter your own categories here, the feedback form will retrieve and shows these categories on the feedback form |
 | Status | Choice | At least status `New` should be present |
 
 ![List Example](./images/ListSample.png)
-
-## Using alternate `Category` or `Status` choices
-
-The information below is applicable to both the `Category` and `Status` field, the sample will focus on the `Category` field.
-
-When creating the list at first time use, the `Category` choice field will be created with a single choice in the list: **Other**. You can add extra categories in the list itself. You can even remove the category **Other** if you like. The order in which the categories appear in the list choice field is the same as the order on the feedback form.
 
 ## Creating the list
 
@@ -53,6 +46,12 @@ However the permissions for the list will not be changed. You have to do this by
 2. Choose Gear Icon > Library Settings > Library Permissions
 3. Break the role inheritance
 4. Add persmission level `Contribute` to the Visitors group
+
+## Extending the list with additional fields
+
+The feedback form presented to the user is automatically created from the feedback list. Initially the end user is only presented with two fields: `Title` and `Feedback`. If you need more information from your end users, you can simply add fields to the feedback list; these fields are automatically added in the feedback form.
+
+**Note**: when you add fields, normally these fields are added at the end of the list. You can change the field order in the list settings. In the feedback list choose `Settings` > `List Settings`, in the field listing choose the option `Column ordering` to change the order of the fields as the appear on the feedback form.
 
 ## Feedback Settings
 
@@ -112,8 +111,14 @@ In the following example the `feedback.json` we disabled the hover effect on the
 | 1.0 | January 10, 2022 | Initial release
 | 2.0 | July 14, 2022 | Updated version; semi hide the button until mouse over |
 | 3.0 | July 23, 2022 | Updated version, see Feedback Settings section |
+| 4.0 | TODO - Set Date | Updated version, see Feedback Settings section |
 
 ### Version History Change List
+
+**Version V4.0**
+- Implement PnP DynamicForm, feedback form is generated based on the fields in feedback list (customizable)
+- Implement global feedback list, when installing web part, the create form wizard allows you to connect to a global list, feedback is collected globally in the central list
+- Web part is now installable on all site collection at once when added to the central App Catalog in SharePoint
 
 **Version V3.0**
 - Added Category Choice field shown on the feedback form (thanks @JoeAyre)

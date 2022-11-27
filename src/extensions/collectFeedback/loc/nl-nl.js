@@ -16,7 +16,7 @@ define([], function() {
     PANEL_BUTTON_CANCEL: "Annuleren",
     PANEL_BUTTON_SAVE: "Feedback bewaren",
     PANEL_ERROR_SAVE: "Oeps, er is iets mis gegaan bij het opslaan van de feedback. Neem contact op met de site eigenaar.",
-    PANEL_SUBTITLE: "Dank je dat je ons van feedback wilt voorzien, feedback is van belang zodat wij de site nog beter kunnen maken. Typ jouw feedback in het tekstvak hieronder en klik op 'Feedback bewaren'.",
+    PANEL_SUBTITLE: "Dank je dat je ons van feedback wilt voorzien, feedback is van belang zodat wij de site nog beter kunnen maken. Typ jouw feedback in het tekstvak hieronder en klik op 'Bewaren'.",
     PANEL_TITLE: "Feedback verzamelen",
     TASK_ADD_FIELDS: "Toevoegen velden aan de lijst...",
     TASK_ALL_DONE: "Alle taken uitgevoerd!",
